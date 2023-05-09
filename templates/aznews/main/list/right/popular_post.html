@@ -1,0 +1,26 @@
+<aside class="single_sidebar_widget popular_post_widget">
+    <h3 class="widget_title">Popular Post</h3>
+    <div class="media post_item">
+        <img src="assets/img/post/post_1.png" alt="post">
+        <div class="media-body">
+            <a href="single-blog.html">
+                <h3>From life was you fish...</h3>
+            </a>
+            <p>January 12, 2019</p>
+        </div>
+    </div>
+    {% for trending_post in trending_posts %}
+    <div class="media post_item">
+        <img src="{{  trending_post.featured_image.url }}" alt="{{ trending_post.title }}"
+        width="160px"
+        height="80px">
+        <div class="media-body">
+            <a href="{% url 'post-detail' trending_post.pk %}">
+                <h3>{{ trending_post.title|truncatechars:25 }}</h3>
+            </a>
+            <p> {{ trending_post.published_at |date:"F n, Y" }}</p>
+        </div>
+    </div>
+    {% endfor %}
+ 
+</aside>
