@@ -3,10 +3,10 @@ from django.urls import path
 from blog_app import views
 
 urlpatterns = [
-    path("", views.PostListView.as_view(), name="post-list"),
+    #path("", views.PostListView.as_view(), name="post-list"),
     # path("post-list",views.post_list),
     # path=("post-detail"/<int:pk>/,views.post_detail),
-    path("post-detail/<int:pk>/",views.PostDetailView.as_view(), name="post-detail"),
+    # path("post-detail/<int:pk>/",views.PostDetailView.as_view(), name="post-detail"),
     path("draft-list/", views.DraftListView.as_view(),name="draft-list"),
     path("draft-detail/<int:pk>/",views.DraftDetailView.as_view(), name="draft-detail"),
     path("draft-publish/<int:pk>/",views.DraftPublishView.as_view(), name="draft-publish"),

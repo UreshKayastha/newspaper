@@ -86,7 +86,7 @@ class PostByCategoryView(ListView):
     context_object_name="posts"
     paginate_by=2
     
-    def get_query(self):
+    def get_queryset(self):
         query=super().get_queryset()
         query= query.filter(
             status="active",published_at__isnull=False, category=self.kwargs["category_id"],).order_by("-published_at")
@@ -98,10 +98,10 @@ class PostByTagView(ListView):
     context_object_name="posts"
     paginate_by=2
     
-    def get_query(self):
+    def get_queryset(self):
         query=super().get_queryset()
         query= query.filter(
-            status="active",published_at__isnull=False, category=self.kwargs["category_id"],).order_by("-published_at")
+            status="active",published_at__isnull=False, tag=self.kwargs["tag_id"],).order_by("-published_at")
         return query
     
 

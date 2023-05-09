@@ -2,7 +2,7 @@
     <h4>Leave a Reply</h4>
     <form class="form-contact comment_form" action="{% url 'comment' %}" id="commentForm" method="post">
       {% csrf_token %}
-      <input type="hidden" name="post" value="{{ post.id }}"
+      <input type="hidden" name="post" value="{{ post.id }}">
        <div class="row">
           <div class="col-12">
              <div class="form-group">
