@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
 
 from blog_app.forms import PostForm
-from blog_app.models import Post
+from newspaper.models import Post
 
 
 # function based views
@@ -13,7 +13,7 @@ from blog_app.models import Post
 
 class PostListView(ListView):
     model = Post
-    template_name = "post_list.html"
+    template_name = "blog/post_list.html"
     queryset = Post.objects.filter(
         published_at__isnull=False).order_by("-published_at")
     context_object_name = "posts"
@@ -21,7 +21,7 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = "post_detail.html"
+    template_name = "blog/post_detail.html"
     context_object_name = "post"
 
     def get_queryset(self):
@@ -33,7 +33,7 @@ class PostDetailView(DetailView):
 
 class DraftListView(LoginRequiredMixin,ListView):
     model = Post
-    template_name = "draft_list.html"
+    template_name = "blog/draft_list.html"
     queryset = Post.objects.filter(
         published_at__isnull=True).order_by("-published_at")
     context_object_name = "posts"
@@ -41,7 +41,7 @@ class DraftListView(LoginRequiredMixin,ListView):
 
 class DraftDetailView(LoginRequiredMixin,DetailView):
     model = Post
-    template_name = "draft_detail.html"
+    template_name = "blog/draft_detail.html"
     context_object_name = "post"
 
     def get_queryset(self):
@@ -79,14 +79,14 @@ def post_delete(request, pk):
 class PostUpdateView(LoginRequiredMixin,UpdateView):
     model=Post
     form_class=PostForm
-    template_name="post_create.html"
+    template_name="blog/post_create.html"
     success_url=reverse_lazy("post-list")
 
 
 class PostCreateView(LoginRequiredMixin,CreateView):
     model = Post
     form_class = PostForm
-    template_name = "post_create.html"
+    template_name = "blog/post_create.html"
     success_url = reverse_lazy("draft-list")
 
     def form_valid(self, form):
@@ -97,7 +97,7 @@ class PostUpdateView(LoginRequiredMixin,View):
     def get(self,request,pk,*args,**kwargs):
         post=Post.objects.get(pk=pk)
         form=PostForm(instance=post)
-        return render( request,"post_create.html",{"form":form},)
+        return render( request,"blog/post_create.html",{"form":form},)
     
     def post(self,request,pk,*args, **kwargs):
         post=Post.objects.get(pk=pk)
@@ -112,7 +112,7 @@ class PostUpdateView(LoginRequiredMixin,View):
                     return redirect("draft-detail",post.pk)
             else:
                 return render(
-                    request,"post_create.html",{"form": form},
+                    request,"blog/post_create.html",{"form": form},
                 )
                 
 
@@ -121,5 +121,5 @@ class PostUpdateView(LoginRequiredMixin,View):
 # class PostUpdateView(LoginRequiredMixin,UpdateView):
 #     model = Post
 #     form_class = PostForm
-#     template_name = "post_create.html"
+#     template_name = "blog/post_create.html"
 #     success_url = reverse_lazy("post-list")
