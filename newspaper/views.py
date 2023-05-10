@@ -16,7 +16,7 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
-        context["trending_posts"]= Post.objects.filter(status="active",published_at__isnull=False).order_by("-published_at", "-views_count")[:3]
+        context["trending_posts"]= Post.objects.filter(status="active",published_at__isnull=False).order_by("-published_at", "-views_count")[:4]
         context["featured_post"]=( Post.objects.filter(status="active",published_at__isnull=False).order_by ("-views_count").first())
         context["featured_posts"]=( Post.objects.filter(status="active",published_at__isnull=False).order_by ("-views_count")[2:5])
         one_week_ago= timezone.now()-timedelta(days=7)

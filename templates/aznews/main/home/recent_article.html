@@ -1,4 +1,4 @@
-{% load static %}
+
 <div class="recent-articles">
     <div class="container">
        <div class="recent-wrapper">
@@ -14,6 +14,7 @@
                 <div class="col-12">
                     <div class="recent-active dot-style d-flex dot-style">
                         {% for trending_post in trending_posts %}
+                        <h6>
                         <div class="single-recent mb-100">
                             <div class="what-img">
                                 <img src="{{ trending_post.featured_image.url }}" alt="{{ trending_post.title}}">

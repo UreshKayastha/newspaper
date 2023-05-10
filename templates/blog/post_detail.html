@@ -10,7 +10,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="{% url 'post-delete' post.pk %}" method="post">
+        <form action="{% url 'blog:post-delete' post.pk %}" method="post">
           {% csrf_token %}
           <h6>Are you sure you want to delete ?  </h6>
           <div class="modal-footer">

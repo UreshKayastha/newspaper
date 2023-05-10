@@ -23,17 +23,17 @@
       <a href="{% url 'logout' %}" class="top-menu">
         <span class="material-symbols-outlined lg-icons">Logout </span>
       </a>
-      <a href="{% url 'draft-list' %}" class="top-menu">
+      <a href="{% url 'blog:draft-list' %}" class="top-menu">
         <span class="material-symbols-outlined lg-icons">draft </span>
       </a>
-      <a href="{% url 'post-create' %}" class="top-menu">
+      <a href="{% url 'blog:post-create' %}" class="top-menu">
         <span class="material-symbols-outlined lg-icons">add </span>
       </a>
       {% else %}
       <a href="{% url 'login' %}" class="top-menu">
         <span class="material-symbols-outlined lg-icons">Login </span>
       </a>
-      <a href="{% url 'post-create' %}" class="top-menu">
+      <a href="{% url 'blog:post-create' %}" class="top-menu">
         <span class="material-symbols-outlined lg-icons">add </span>
       </a>
       {% endif %}
